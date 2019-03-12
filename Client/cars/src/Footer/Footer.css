@@ -1,0 +1,20 @@
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    /*text-align: center;*/
+    background-color: black;
+    color: dodgerblue;
+    padding: 6px 0;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+a {
+    text-align: left;
+    color: dodgerblue;
+    padding: 6px 2px;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 7px;
+}

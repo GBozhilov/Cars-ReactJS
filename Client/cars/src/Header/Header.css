@@ -1,0 +1,45 @@
+.App header {
+    overflow: hidden;
+    background-color: black;
+    padding: 0 30px;
+
+}
+
+.App header a {
+    float: left;
+    color: dodgerblue;
+    text-align: center;
+    padding: 14px;
+    text-decoration: none;
+    font-size: 18px;
+    line-height: 25px;
+    font-weight: bold;
+    border-radius: 7px;
+}
+
+.App header a.logo {
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.App header a:hover {
+    background-color: dodgerblue;
+    color: black;
+}
+
+.App header .header-right {
+    float: right;
+}
+
+
+@media screen and (max-width: 500px) {
+    .App header a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+
+    .App header-right {
+        float: none;
+    }
+}

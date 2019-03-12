@@ -1,0 +1,46 @@
+.Home {
+    text-align: center;
+}
+
+.Home ul.cars {
+    display: flex;
+    margin: 0 auto;
+    width: 50%;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.Home li.car {
+    display: grid;
+}
+
+.Home .video {
+    margin: 0 auto;
+}
+
+.Home img {
+    margin: 0 auto;
+    width: 640px;
+    height: 360px;
+}
+
+button {
+    width: 30%;
+    margin: 0 auto;
+    border: 2px solid dodgerblue;
+    text-align: center;
+    font-size: 14px;
+    background: black;
+    color: dodgerblue;
+    border-radius: 7px;
+    margin-top: 20px;
+    /*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.5); */
+    padding: 10px 20px;
+}
+
+button:hover {
+    color: black;
+    background: dodgerblue;
+    border-radius: 7px;
+    padding: 10px 20px;
+}
