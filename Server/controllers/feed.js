@@ -6,7 +6,7 @@ module.exports = {
             .then((cars) => {
                 res
                     .status(200)
-                    .json({message: 'Fetched Cars Successfully', cars});
+                    .json({message: 'All Cars', cars});
             })
             .catch((error) => {
                 if (!error.statusCode) {
