@@ -31,9 +31,8 @@ class Delete extends Component {
         return (
             <Fragment>
                 <div className="Home">
-                    <h1>Delete</h1>
+                    <h1>Are you sure you want to delete the {car.brand}?</h1>
                     <span>
-                    <h2>Details Of {car.brand} {car.model}</h2>
                     <img src={car.image} width="640px" height="360px" alt="car"/>
                     <h4>Brand: {car.brand}</h4>
                     <h4>Model: {car.model}</h4>

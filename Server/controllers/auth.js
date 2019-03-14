@@ -32,7 +32,12 @@ module.exports = {
                 salt
             }).then((user) => {
                 res.status(201)
-                    .json({message: 'User Created', userId: user._id, username: user.username});
+                    .json({
+                        message: 'User Created',
+                        userId: user._id,
+                        username: user.username,
+                        email: user.email,
+                    });
             })
                 .catch((error) => {
                     if (!error.statusCode) {
@@ -73,6 +78,7 @@ module.exports = {
                         token,
                         userId: user._id.toString(),
                         username: user.username,
+                        email: user.email,
                         isAdmin: user.roles.indexOf('Admin') !== -1
                     });
             })

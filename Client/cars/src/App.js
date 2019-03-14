@@ -10,6 +10,7 @@ import Create from './Create/Create';
 import Header from './Header/Header';
 import Description from './Description/Description';
 import Details from './Details/Details';
+import UserDetails from './Details/UserDetails';
 import Video from './Video/Video';
 import Footer from './Footer/Footer';
 import Delete from './Delete/Delete';
@@ -21,6 +22,7 @@ class App extends Component {
 
         this.state = {
             username: null,
+            email: null,
             isAdmin: false,
             cars: [],
             isFetched: false
@@ -50,10 +52,11 @@ class App extends Component {
             headers: {'Content-Type': 'application/json'}
         })
             .then(rawData => rawData.json())
-            .then(({username, message, isAdmin}) => {
+            .then(({username, email, message, isAdmin}) => {
                 if (username) {
                     this.setState({
                         username,
+                        email,
                         isAdmin
                     });
 
@@ -64,6 +67,7 @@ class App extends Component {
 
                     localStorage.setItem('username', username);
                     localStorage.setItem('isAdmin', isAdmin);
+                    localStorage.setItem('email', email);
                 } else {
                     toast.error(message, {
                         closeButton: false,
@@ -127,7 +131,7 @@ class App extends Component {
     }
 
     render() {
-        const {username, isAdmin, cars} = this.state;
+        const {username, email, isAdmin, cars} = this.state;
 
         return (
             <div className="App">
@@ -221,6 +225,22 @@ class App extends Component {
                                     />
                         }
                     />
+                    <Route
+                        path="/user/details"
+                        render={
+                            () =>
+                                username ?
+                                    <UserDetails
+                                        username={username}
+                                        email={email}
+                                        isAdmin={isAdmin}
+                                    />
+                                    :
+                                    <Redirect
+                                        to={{pathname: '/login'}}
+                                    />
+                        }
+                    />
                     <Route render={() => <h1>Not Found</h1>}/>
                 </Switch>
                 <Footer/>
@@ -231,11 +251,13 @@ class App extends Component {
     componentWillMount() {
         const isAdmin = localStorage.getItem('isAdmin') === 'true';
         const username = localStorage.getItem('username');
+        const email = localStorage.getItem('email');
 
         if (username) {
             this.setState({
                 username,
-                isAdmin
+                email,
+                isAdmin,
             });
         }
 

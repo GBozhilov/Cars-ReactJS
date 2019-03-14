@@ -24,7 +24,7 @@ class Header extends Component {
                         loggedUser ?
                             (<span>
                                 <Link to="/">Home Page</Link>
-                                <Link to="#">Welcome {loggedUser}</Link>
+                                <Link to="/user/details">Welcome {loggedUser}</Link>
                                 {adminBtn}
                                 <Link onClick={Header.handleLogout} to="/">Logout</Link>
                             </span>)
