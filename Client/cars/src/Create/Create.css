@@ -10,19 +10,19 @@
 }
 
 .Create input[type="submit"]{  
-  width: 25%;
+  width: 30%;
   margin:0 auto;
   border: 2px solid dodgerblue;
   text-align: center;  
   font-size: 14px;
-  background: dodgerblue;
-  color: white;
+  background: black;
+  color: dodgerblue;
   border-radius: 7px;
   margin-top: 20px; 
-  box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.5); 
+  /*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.5); */
 }
 
 .Create input[type="submit"]:hover{
-  color: dodgerblue;
-  background: transparent;
+  color: black;
+  background: dodgerblue;
 }

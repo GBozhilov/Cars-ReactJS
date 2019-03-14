@@ -1,5 +1,5 @@
-import React, {Component, Fragment} from 'react'
-import {Link} from 'react-router-dom'
+import React, {Component} from 'react'
+import {Link, Redirect} from 'react-router-dom'
 
 class Description extends Component {
     constructor(props) {
@@ -13,13 +13,18 @@ class Description extends Component {
 
     render() {
         const {car} = this.state;
+        const {username} = this.props;
+
+        if (!car) {
+            return <Redirect to='/'/>
+        }
 
         return (
             <div className="Home">
                 <h1>All Cars</h1>
                 <span>
                     <h2>Description Of {car.brand} {car.model}</h2>
-                    <p>{car.description}</p>
+                    <h4>{car.description}</h4>
                 </span>
                 <ul className="cars">
                     {
@@ -28,19 +33,25 @@ class Description extends Component {
                                 <h2>{car.brand} {car.model}</h2>
                                 <img src={car.image} width="640px" height="360px" alt="car"/>
                                 <span>
-                            <Fragment>
-                                <button><Link to={`/video/${car._id}`}>View Video</Link></button>
-                                <button onClick={() => {
-                                    this.setState({
-                                        car: this.props.cars.find(car => car._id === car._id)
-                                    })
-                                }}>View Description</button>
-                                 <button><Link to={`/details/${car._id}`}>View Details</Link></button>
-                            </Fragment>
-                            </span>
+                                    <Link to={`/video/${car._id}`}><button>Video</button></Link>
+                                    <button onClick={() => {
+                                        this.setState({
+                                            car: this.props.cars.find(c => c._id === car._id)
+                                        })
+                                    }}>Description
+                                    </button>
+                                    {
+                                        username
+                                            ? <Link to={`/details/${car._id}`}><button>Details</button></Link>
+                                            : null
+                                    }
+                                    <Link to='/'><button>Back</button></Link>
+                                </span>
                             </li>))
                     }
                 </ul>
+                <br/>
+                <br/>
             </div>
         );
     }

@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import ReactPlayer from 'react-player';
-import {Link} from 'react-router-dom'
+import {Link, Redirect} from 'react-router-dom'
 
 import './Video.css'
 
@@ -19,7 +19,11 @@ class Video extends Component {
 
     render() {
         const {car} = this.state;
-        const {cars} = this.props;
+        const {cars, username} = this.props;
+
+        if (!car) {
+            return <Redirect to='/'/>
+        }
 
         return (
             <div className="Home">
@@ -40,17 +44,28 @@ class Video extends Component {
                                 <h2>{car.brand} {car.model}</h2>
                                 <img src={car.image} width="640px" height="360px" alt="car"/>
                                 <span>
-                                <button onClick={() => {
-                                    this.setState({
-                                        car: cars.find(car => car._id === car._id)
-                                    })
-                                }}>Video</button>
-                                <Link to={`/description/${car._id}`}><button>Description</button></Link>
-                                <Link to={`/details/${car._id}`}><button>Details</button></Link>
+                                    <Link to={`/video/${car._id}`}>
+                                        <button onClick={() => {
+                                            this.setState({
+                                                car: cars.find(c => c._id === car._id)
+                                            })
+                                        }}>
+                                            Video
+                                        </button>
+                                    </Link>
+                                    <Link to={`/description/${car._id}`}><button>Description</button></Link>
+                                    {
+                                        username
+                                            ? <Link to={`/details/${car._id}`}><button>Details</button></Link>
+                                            : null
+                                    }
+                                    <Link to="/"><button>Back</button></Link>
                                 </span>
                             </li>))
                     }
                 </ul>
+                <br/>
+                <br/>
             </div>
         );
     }

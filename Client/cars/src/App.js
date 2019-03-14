@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
+import {Route, Switch, Redirect} from 'react-router-dom';
 import {ToastContainer, toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import {Route, Switch, Redirect} from 'react-router-dom';
 
 import Home from './Home/Home';
 import Register from './Register/Register';
@@ -9,8 +9,10 @@ import Login from './Login/Login';
 import Create from './Create/Create';
 import Header from './Header/Header';
 import Description from './Description/Description';
+import Details from './Details/Details';
 import Video from './Video/Video';
 import Footer from './Footer/Footer';
+import Delete from './Delete/Delete';
 import './App.css';
 
 class App extends Component {
@@ -25,6 +27,7 @@ class App extends Component {
         };
 
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleDelete = this.handleDelete.bind(this);
     }
 
     handleChange(e) {
@@ -96,6 +99,33 @@ class App extends Component {
             });
     }
 
+    handleDelete(data) {
+        const carId = data._id;
+        const url = `http://localhost:5000/feed/car/delete/${carId}`;
+
+        fetch(url, {
+            method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data),
+        })
+            .then(rawData => rawData.json())
+            .then(({errors, message}) => {
+                if (errors) {
+                    toast.error(message, {
+                        closeButton: false,
+                        autoClose: 2000
+                    });
+                } else {
+                    toast.success(message, {
+                        closeButton: false,
+                        autoClose: 2000
+                    });
+
+                    window.location.reload();
+                }
+            });
+    }
+
     render() {
         const {username, isAdmin, cars} = this.state;
 
@@ -147,8 +177,50 @@ class App extends Component {
                                     />
                         }
                     />
-                    <Route path="/video/" component={() => <Video cars={cars}/>}/>
-                    <Route path="/description/" component={() => <Description cars={cars}/>}/>
+                    <Route
+                        path="/video/"
+                        render={
+                            () => <Video cars={cars} username={username}/>
+                        }
+                    />
+                    <Route
+                        path="/description/"
+                        render={
+                            () => <Description cars={cars} username={username}/>
+                        }
+                    />
+                    <Route
+                        path="/details/"
+                        render={
+                            () =>
+                                username ?
+                                    <Details
+                                        cars={cars}
+                                        username={username}
+                                        isAdmin={isAdmin}
+                                    />
+                                    :
+                                    <Redirect
+                                        to={{pathname: '/login'}}
+                                    />
+                        }
+                    />
+                    <Route
+                        path="/delete/"
+                        render={
+                            () =>
+                                isAdmin ?
+                                    <Delete
+                                        cars={cars}
+                                        isAdmin={isAdmin}
+                                        handleDelete={this.handleDelete}
+                                    />
+                                    :
+                                    <Redirect
+                                        to={{pathname: '/login'}}
+                                    />
+                        }
+                    />
                     <Route render={() => <h1>Not Found</h1>}/>
                 </Switch>
                 <Footer/>
@@ -157,7 +229,7 @@ class App extends Component {
     }
 
     componentWillMount() {
-        const isAdmin = localStorage.getItem('isAdmin') == 'true';
+        const isAdmin = localStorage.getItem('isAdmin') === 'true';
         const username = localStorage.getItem('username');
 
         if (username) {

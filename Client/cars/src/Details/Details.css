@@ -1,0 +1,35 @@
+.video {
+    width: 640px;
+    height: 360px;
+}
+
+.small {
+    width: 100%;
+    height: 100%;
+}
+
+/* mouse over link */
+a:hover {
+    color: black;
+    background-color: dodgerblue;
+    border-radius: 7px;
+}
+
+/* selected link */
+a:active {
+    color: black;
+}
+
+button {
+    width: 30%;
+    margin: 0 auto;
+    border: 2px solid dodgerblue;
+    text-align: center;
+    font-size: 14px;
+    background: black;
+    color: dodgerblue;
+    border-radius: 7px;
+    margin-top: 20px;
+    /*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.5); */
+    padding: 10px 20px;
+}

@@ -26,12 +26,16 @@ class Home extends Component {
         );
 
         return (
-            <div className="Home">
-                <h1>All Cars</h1>
-                <ul className="cars">
-                    {cars}
-                </ul>
-            </div>
+            <Fragment>
+                <div className="Home">
+                    <h1>All Cars</h1>
+                    <ul className="cars">
+                        {cars}
+                    </ul>
+                </div>
+                <br/>
+                <br/>
+            </Fragment>
         );
     }
 }

@@ -87,6 +87,8 @@ class Create extends Component {
                     />
                     <input type="submit" value="Create"/>
                 </form>
+                <br/>
+                <br/>
             </div>
         );
     }
