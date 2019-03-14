@@ -8,12 +8,13 @@ import Register from './Register/Register';
 import Login from './Login/Login';
 import Create from './Create/Create';
 import Header from './Header/Header';
+import Footer from './Footer/Footer';
 import Description from './Description/Description';
 import Details from './Details/Details';
+import Edit from './Edit/Edit';
+import Delete from './Delete/Delete';
 import UserDetails from './Details/UserDetails';
 import Video from './Video/Video';
-import Footer from './Footer/Footer';
-import Delete from './Delete/Delete';
 import './App.css';
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
 
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleDelete = this.handleDelete.bind(this);
+        this.handleEdit = this.handleEdit.bind(this);
     }
 
     handleChange(e) {
@@ -109,6 +111,35 @@ class App extends Component {
 
         fetch(url, {
             method: 'DELETE',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data),
+        })
+            .then(rawData => rawData.json())
+            .then(({errors, message}) => {
+                if (errors) {
+                    toast.error(message, {
+                        closeButton: false,
+                        autoClose: 2000
+                    });
+                } else {
+                    toast.success(message, {
+                        closeButton: false,
+                        autoClose: 2000
+                    });
+
+                    window.location.reload();
+                }
+            });
+    }
+
+    handleEdit(e, data) {
+        e.preventDefault();
+
+        const carId = data._id;
+        const url = `http://localhost:5000/feed/car/edit/${carId}`;
+
+        fetch(url, {
+            method: 'PUT',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify(data),
         })
@@ -234,6 +265,23 @@ class App extends Component {
                                         username={username}
                                         email={email}
                                         isAdmin={isAdmin}
+                                    />
+                                    :
+                                    <Redirect
+                                        to={{pathname: '/login'}}
+                                    />
+                        }
+                    />
+                    <Route
+                        path="/edit/"
+                        render={
+                            () =>
+                                isAdmin ?
+                                    <Edit
+                                        cars={cars}
+                                        isAdmin={isAdmin}
+                                        handleEdit={this.handleEdit}
+                                        handleChange={this.handleChange}
                                     />
                                     :
                                     <Redirect

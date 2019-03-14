@@ -60,4 +60,43 @@ module.exports = {
                 next(error);
             });
     },
+    editCar: (req, res) => {
+        const carId = req.params.carId;
+        const car = req.body;
+
+        Car.findById(carId)
+            .then((c) => {
+                if (!c) {
+                    const error = new Error('Car Not Found');
+                    error.statusCode = 404;
+                    throw error;
+                }
+
+                c.brand = car.brand;
+                c.model = car.model;
+                c.year = car.year;
+                c.engine = car.engine;
+                c.price = car.price;
+                c.description = car.description;
+                c.image = car.image;
+                c.videoUrl = car.videoUrl;
+
+                return c.save();
+            })
+            .then((c) => {
+                if (c) {
+                    res.status(200).json({
+                        message: 'Car Updated',
+                        car: c
+                    })
+                }
+            })
+            .catch((error) => {
+                if (!error.statusCode) {
+                    error.statusCode = 500;
+                }
+
+                next(error);
+            });
+    }
 };

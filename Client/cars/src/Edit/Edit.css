@@ -1,0 +1,28 @@
+.Edit form {
+    display: grid;
+    width: 25%;
+    margin: 0 auto;
+}
+
+.Edit input {
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.Edit input[type="submit"] {
+    width: 30%;
+    margin: 0 auto;
+    border: 2px solid dodgerblue;
+    text-align: center;
+    font-size: 14px;
+    background: black;
+    color: dodgerblue;
+    border-radius: 7px;
+    margin-top: 20px;
+    /*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.5); */
+}
+
+.Edit input[type="submit"]:hover {
+    color: black;
+    background: dodgerblue;
+}
