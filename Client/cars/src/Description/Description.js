@@ -21,11 +21,12 @@ class Description extends Component {
 
         return (
             <div className="Home">
-                <h1>All Cars</h1>
                 <span>
                     <h2>Description Of {car.brand} {car.model}</h2>
                     <h4>{car.description}</h4>
                 </span>
+                <hr/>
+                <h1>All Cars</h1>
                 <ul className="cars">
                     {
                         this.props.cars.map(car => (

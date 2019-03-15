@@ -28,7 +28,7 @@ class Details extends Component {
         const adminBtns =
             <Fragment>
                 <Link to={`/edit/${car._id}`}><button>Edit</button></Link>
-                <Link to={`/delete/${car._id}`}><button>Del</button></Link>
+                <Link to={`/delete/${car._id}`}><button className="del">Del</button></Link>
             </Fragment>;
 
         return (
@@ -48,6 +48,7 @@ class Details extends Component {
                     <h4>Year: {car.year}</h4>
                     <h4>Engine: {car.engine}</h4>
                     <h4>Price: {car.price} $</h4>
+                    <h4>{car.description}</h4>
                 </span>
                 <ul className="cars">
                     <li className="car">

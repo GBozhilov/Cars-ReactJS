@@ -27,7 +27,6 @@ class Video extends Component {
 
         return (
             <div className="Home">
-                <h1>All Cars</h1>
                 <span>
                     <h2>Video Of {car.brand} {car.model}</h2>
                     <div className="video">
@@ -36,7 +35,8 @@ class Video extends Component {
                         </div>
                     </div>
                 </span>
-
+                <hr/>
+                <h1>All Cars</h1>
                 <ul className="cars">
                     {
                         cars.map(car => (

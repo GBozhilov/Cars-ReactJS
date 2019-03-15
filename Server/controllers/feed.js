@@ -61,7 +61,7 @@ module.exports = {
             });
     },
     editCar: (req, res) => {
-        const carId = req.params.carId;
+        const carId = req.body.car._id;
         const car = req.body;
 
         Car.findById(carId)
@@ -96,7 +96,7 @@ module.exports = {
                     error.statusCode = 500;
                 }
 
-                next(error);
+                //next(error);
             });
     }
 };

@@ -33,3 +33,31 @@ button {
     /*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.5); */
     padding: 10px 20px;
 }
+
+.del {
+    width: 30%;
+    margin: 0 auto;
+    border: 2px solid dodgerblue;
+    text-align: center;
+    font-size: 14px;
+    background: black;
+    color: red;
+    border-radius: 7px;
+    margin-top: 20px;
+    margin-left: 2px;
+    margin-right: 2px;
+    /*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.5); */
+}
+
+/*.Details button {*/
+    /*width: 30%;*/
+    /*margin: 0 auto;*/
+    /*border: 2px solid dodgerblue;*/
+    /*text-align: center;*/
+    /*font-size: 14px;*/
+    /*background: black;*/
+    /*color: dodgerblue;*/
+    /*border-radius: 7px;*/
+    /*margin-top: 20px;*/
+    /*!*box-shadow: 2px 2px 0px 0px rgba(0,0,0,0.5); *!*/
+/*}*/

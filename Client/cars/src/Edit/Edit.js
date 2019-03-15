@@ -11,6 +11,10 @@ class Edit extends Component {
         this.id = window.location.pathname.split('/').pop();
         const car = this.props.cars.find(car => car._id === this.id) || null;
 
+        if (!car) {
+            return;
+        }
+
         this.state = {
             car,
             brand: car.brand,
@@ -27,13 +31,14 @@ class Edit extends Component {
     }
 
     render() {
-        const {handleEdit} = this.props;
-        const data = this.state.car;
-        const {car} = this.state;
 
-        if (!car) {
+        const {handleEdit} = this.props;
+
+        if (!this.state) {
             return <Redirect to='/'/>
         }
+
+        const {car} = this.state;
 
         const {
             brand,
@@ -49,7 +54,7 @@ class Edit extends Component {
         return (
             <div className="Edit">
                 <h1>Edit {car.brand} {car.model}</h1>
-                <form onSubmit={(e) => handleEdit(e, data)}>
+                <form onSubmit={(e) => handleEdit(e, this.state)}>
                     <label htmlFor="brand">Brand</label>
                     <input
                         type="text"

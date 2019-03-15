@@ -25,13 +25,13 @@ class Delete extends Component {
 
         const adminBtns =
             <Link to={`/delete/${car._id}`}>
-                <button onClick={() => handleDelete(car)}>Del</button>
+                <button className="del" onClick={() => handleDelete(car)}>Del</button>
             </Link>;
 
         return (
             <Fragment>
                 <div className="Home">
-                    <h1>Are you sure you want to delete the {car.brand}?</h1>
+                    <h1>Are You Sure You Want To Delete The {car.brand}?</h1>
                     <span>
                     <img src={car.image} width="640px" height="360px" alt="car"/>
                     <h4>Brand: {car.brand}</h4>
